@@ -14,7 +14,14 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
+  # Don't yet know a ruby coding style, so using the return asap style
+  if a == b
+    return :equilateral if b == c
+    return :isosceles
+  end
+  return :isosceles if b == c
+  return :isosceles if a == c
+  :scalene
 end
 
 # Error class used in part 2.  No need to change this code.
