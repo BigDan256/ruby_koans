@@ -24,9 +24,16 @@ def triangle(a, b, c)
   #:scalene
 
   # Test driven style
+  raise(TriangleError, "Side is too short") if a <= 0 or b <= 0 or c <= 0
+
+  raise(TriangleError, "Side is too long") if b + c <= a or a + c <= b or a + b <= c
+
   return :scalene if a != b and b != c and c != a
+
   return :isosceles if a != b or b != c
+
   :equilateral
+
 end
 
 # Error class used in part 2.  No need to change this code.
