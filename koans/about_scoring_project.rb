@@ -30,7 +30,39 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # Your goal is to write the score method.
 
 def score(dice)
+  tally = [0, 0, 0, 0, 0, 0, 0]
+
   # You need to write this method
+  score = 0
+
+  dice.each { |face| tally[face] += 1 }
+
+  # * A set of three ones is 1000 points
+  if tally[1] > 2
+    tally[1] -= 3
+    score += 1000
+  end
+
+  # * A set of three numbers (other than ones) is worth 100 times the
+  #   number. (e.g. three fives is 500 points).
+  tally.map.with_index do |qty,face|
+    while qty > 2
+      score += face * 100
+      qty   -= 3
+
+      tally[face] = qty # TODO: Not quite understanding why this line is needed, plus it's not nice to modify a structure being iterated
+
+    end
+    qty
+  end
+
+  # * A one (that is not part of a set of three) is worth 100 points.
+  score += tally[1] * 100
+
+  # * A five (that is not part of a set of three) is worth 50 points.
+  score += tally[5] * 50
+
+  score
 end
 
 class AboutScoringProject < Neo::Koan
