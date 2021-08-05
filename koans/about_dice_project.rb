@@ -7,6 +7,14 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # end
 
 class AboutDiceProject < Neo::Koan
+  class DiceSet
+    attr_reader :values
+
+    def roll(qty)
+      @values = (1..qty).map { |item| rand(1..6) }
+    end
+  end
+
   def test_can_create_a_dice_set
     dice = DiceSet.new
     assert_not_nil dice
@@ -48,6 +56,8 @@ class AboutDiceProject < Neo::Koan
     # If the rolls are random, then it is possible (although not
     # likely) that two consecutive rolls are equal.  What would be a
     # better way to test this?
+
+    # Note: repeated rolls until either a mismatch or the definition of "random" isn't satisfied?
   end
 
   def test_you_can_roll_different_numbers_of_dice
