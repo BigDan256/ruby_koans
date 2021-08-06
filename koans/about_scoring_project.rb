@@ -45,13 +45,10 @@ def score(dice)
 
   # * A set of three numbers (other than ones) is worth 100 times the
   #   number. (e.g. three fives is 500 points).
-  tally.map.with_index do |qty,face| # TODO: How did I find "with_index"?
+  tally.map!.with_index do |qty, face| # Note: .map returns an enumerator object
     while qty > 2
       score += face * 100
       qty   -= 3
-
-      tally[face] = qty # TODO: It's not nice to modify array being iterated
-
     end
     qty
   end
