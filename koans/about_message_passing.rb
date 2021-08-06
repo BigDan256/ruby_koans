@@ -36,7 +36,9 @@ class AboutMessagePassing < Neo::Koan
     # THINK ABOUT IT:
     #
     # Why does Ruby provide both send and __send__ ?
+
     # Note: Developers may want send for another purpose
+    # Underscore names are an easy way to reserve keywords without breaking legacy code?
   end
 
   def test_classes_can_be_asked_if_they_know_how_to_respond

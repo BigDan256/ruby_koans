@@ -103,7 +103,11 @@ EOS
     # Ruby programmers tend to favor the shovel operator (<<) over the
     # plus equals operator (+=) when building up strings.  Why?
 
-    #Note: It builds a stream, less memory management and processing than concatenation?
+    #Note: From the source (string.c):
+    # << Returns +self+ concatenated with a given string or integer.
+    # +  Returns the concatenation of +self+ and a given other string.
+    # So at least two reasons? += is self modifying, and << will convert integers to characters
+ 
   end
 
   def test_double_quoted_string_interpret_escape_characters

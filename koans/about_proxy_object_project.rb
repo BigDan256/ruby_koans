@@ -38,8 +38,7 @@ class Proxy
   end
 
   def number_of_times_called(method_name)
-    # Note: I think there's a better way to do this?
-    messages.select { |item| item == method_name } .size
+    messages.count(method_name)
   end
 end
 

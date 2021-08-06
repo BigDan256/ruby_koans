@@ -91,12 +91,12 @@ class AboutHashes < Neo::Koan
   end
 
   def test_default_value_is_the_same_object
-    hash = Hash.new([])
+    hash = Hash.new([]) # Note: The default isn't a copy but a reference to this object
 
     hash[:one] << "uno"
     hash[:two] << "dos"
 
-    assert_equal ["uno", "dos"], hash[:one] #Note: << on hash modifies the default value?
+    assert_equal ["uno", "dos"], hash[:one]
     assert_equal ["uno", "dos"], hash[:two]
     assert_equal ["uno", "dos"], hash[:three]
 
@@ -104,7 +104,7 @@ class AboutHashes < Neo::Koan
   end
 
   def test_default_value_with_block
-    hash = Hash.new {|hash, key| hash[key] = [] } #Note: My brain hurts now, what is this?
+    hash = Hash.new {|hash, key| hash[key] = [] } # Note: I understand this now, a default generator
 
     hash[:one] << "uno"
     hash[:two] << "dos"
